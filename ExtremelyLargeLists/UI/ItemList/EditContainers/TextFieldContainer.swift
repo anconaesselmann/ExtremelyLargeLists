@@ -28,9 +28,14 @@ struct TextFieldContainer: View {
     }
 
     var body: some View {
-        TextField(title, text: $text)
-            .onSubmit {
+        HStack {
+            TextField(title, text: $text)
+                .onSubmit {
+                    onSubmit(text)
+                }
+            Button("done") {
                 onSubmit(text)
             }
+        }
     }
 }

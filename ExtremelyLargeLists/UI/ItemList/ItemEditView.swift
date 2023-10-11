@@ -36,5 +36,6 @@ struct ItemEditView: View, Identifiable {
                 await vm.onAppear()
             }
         }
+        .id(vm.refreshId) // The VM detect outside changes and will promet the UI to redraw. Internal changes do not need to trigger a redraw since individual components handle state changes
     }
 }

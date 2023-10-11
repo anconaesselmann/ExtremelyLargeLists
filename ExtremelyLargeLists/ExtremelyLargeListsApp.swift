@@ -11,8 +11,10 @@ struct ExtremelyLargeListsApp: App {
     var appLoader = AppLoader()
 
     init() {
-//        Constants.mockItemCount = 1000000
-//        Constants.generateOnAppLaunch = true
+        // Note: Running the app with this line uncommented will populate CoreData with 1,000,000 aditional random items on app launch
+//        Constants.generateAditionalItemsOnAppLaunch = true
+
+        // Note: To see when a view gets redrawn uncomment this line
 //        SwiftUIDebugManager.shared.isDebugging = true
     }
 

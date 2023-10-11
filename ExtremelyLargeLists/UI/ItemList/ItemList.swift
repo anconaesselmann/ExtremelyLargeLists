@@ -12,14 +12,19 @@ struct ItemList: View {
 
     var body: some View {
         ZStack {
-            VStack {
+            VStack(spacing: 0) {
                 DebugView(self)
                 HStack {
                     Button("sort", action: vm.sort)
-                    Button("toggle marked", action: vm.toggle)
+                        .buttonStyle(.bordered)
+                    Button("Toggle first 10", action: vm.toggle)
+                        .buttonStyle(.bordered)
                     Button("Add new", action: vm.addNew)
+                        .buttonStyle(.bordered)
                     Button("-", action: vm.remove)
+                        .buttonStyle(.bordered)
                 }
+                .padding()
                 List(selection: $vm.selection) {
                     ForEach(vm.items) {
                         ItemView(item: $0)

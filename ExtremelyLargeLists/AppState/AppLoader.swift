@@ -21,7 +21,7 @@ class AppLoader: ObservableObject {
         let dataController = DataController()
         do {
             try await dataController.initialize()
-            if Constants.generateOnAppLaunch {
+            if Constants.generateAditionalItemsOnAppLaunch {
                 await dataController.generate()
             }
         } catch {

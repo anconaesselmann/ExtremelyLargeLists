@@ -12,14 +12,12 @@ struct RootView: View {
     var body: some View {
         VStack {
             DebugView(self)
-            HSplitView {
-                SplitViewContainer(layout: $splitViewManager.layout) {
-                    ItemList()
-                } right: { id in
-                    ItemEditView(id: id)
-                        .id(id)
-                        .frame(width: 300)
-                }
+            SplitViewContainer(layout: $splitViewManager.layout) {
+                ItemList()
+            } right: { id in
+                ItemEditView(id: id)
+                    .id(id)
+                    .frame(width: 300)
             }
         }
     }

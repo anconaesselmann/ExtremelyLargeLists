@@ -87,8 +87,12 @@ class ItemListViewModel: ObservableObject {
 
     func toggle() async {
         // To avoid reloading the list we update the store, the items array and the individual list cells (with the items update manager). This way we presever the list scroll state
+        guard !items.isEmpty else {
+            return
+        }
+        let to = min(items.count, 10)
         loadingManager.isLoading = true
-        for index in 0..<10 {
+        for index in 0..<to {
             let item = items[index]
             let toggled = await store.toggled(item: item)
             items[index] = toggled

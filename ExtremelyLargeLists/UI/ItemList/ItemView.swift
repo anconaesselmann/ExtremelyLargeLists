@@ -19,12 +19,11 @@ struct ItemView: View, Identifiable {
     var body: some View {
         HStack {
             Text(vm.text)
-            Button("toggle", action: vm.toggle)
-            Button("-") {
-                await vm.remove()
-            }
+            Button(vm.isSet ? "set" : "not set", action: vm.toggle)
+                .buttonStyle(.bordered)
+            Button("-", action: vm.remove)
+                .buttonStyle(.bordered)
             DebugView(self)
         }
-        .background(vm.isSet ? .blue.opacity(0.2) : .clear)
     }
 }

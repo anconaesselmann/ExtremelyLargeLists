@@ -4,6 +4,6 @@
 import Foundation
 
 struct Constants {
-    static var mockItemCount = 100
-    static var generateOnAppLaunch: Bool = false
+    static var mockItemCount = 1000000
+    static var generateAditionalItemsOnAppLaunch: Bool = false
 }

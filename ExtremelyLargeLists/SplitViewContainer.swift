@@ -39,6 +39,7 @@ struct SplitViewContainer<Left, Right, RightData>: View
     let right: (RightData) -> Right
 
     var body: some View {
+#if os(macOS)
         HSplitView {
             if layout.isLeftVisible {
                 left()
@@ -49,5 +50,8 @@ struct SplitViewContainer<Left, Right, RightData>: View
             default: EmptyView()
             }
         }
+#else
+        left()
+#endif
     }
 }
