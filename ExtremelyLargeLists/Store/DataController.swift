@@ -4,11 +4,7 @@
 import Foundation
 import CoreData
 import LoremSwiftum
-
-enum CoreDataError: Error {
-    case couldNotLoadStore
-    case noElementWithId(Item.ID)
-}
+import CoreDataStored
 
 @globalActor
 actor DataController: ObservableObject, PersistentStore {
@@ -37,128 +33,40 @@ actor DataController: ObservableObject, PersistentStore {
     }
 
     func fetchAll(ascending: Bool) -> [Item] {
-        let context = itemBackgroundContext
-        let request = ItemEntity.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: #keyPath(ItemEntity.text), ascending: ascending)]
-        do {
-            let items = try context.fetch(request)
-            return items.compactMap(Item.init)
-        } catch {
-            return []
-        }
+        (try? Item.fetchAll(in: itemBackgroundContext, sortedBy: \.text, ascending: ascending)) ?? []
     }
 
     func toggled(item: Item) -> Item {
-        let context = itemBackgroundContext
-        let request = ItemEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "id == %@", item.id as CVarArg)
-        request.fetchLimit = 1
-        do {
-            let items = try context.fetch(request)
-            guard let entity = items.first else {
-                return item
-            }
-            entity.isSet.toggle()
-            try context.save()
-            return Item(entity) ?? item
-        } catch {
-            print(error)
-            return item
-        }
+        (try? Item.toggle(\.isSet, itemWithId: item.id, in: itemBackgroundContext)) ?? item
     }
 
     func create(item: Item) {
-        let context = itemBackgroundContext
-        let entity = ItemEntity(context: context)
-        entity.id = item.id
-        entity.text = item.text
-        entity.isSet = item.isSet
-        do {
-            try context.save()
-        } catch {
-            print(error)
-        }
+        let _ = try? item.entity(in: itemBackgroundContext, save: true)
     }
 
     func fetch(itemWithId id: Item.ID) -> Item? {
-        let context = itemBackgroundContext
-        let request = ItemEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
-        request.fetchLimit = 1
-        do {
-            let items = try context.fetch(request)
-            guard let entity = items.first else {
-                return nil
-            }
-            return Item(entity)
-        } catch {
-            print(error)
-            return nil
-        }
+        try? Item(id: id, in: itemBackgroundContext)
     }
 
     func remove(itemWithId id: Item.ID) throws {
-        let context = itemBackgroundContext
-        let request = ItemEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
-        request.fetchLimit = 1
-        let items = try context.fetch(request)
-        guard let entity = items.first else {
-            throw CoreDataError.noElementWithId(id)
-        }
-        context.delete(entity)
-        try context.save()
+        try Item.delete(id: id, in: itemBackgroundContext)
     }
-
-
 
     func update(itemWithId id: Item.ID, newText: String) -> Item? {
-        let context = itemBackgroundContext
-        let request = ItemEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
-        request.fetchLimit = 1
-        do {
-            let items = try context.fetch(request)
-            guard let entity = items.first else {
-                return nil
-            }
-            entity.text = newText
-            try context.save()
-            return Item(entity)
-        } catch {
-            print(error)
-            return nil
-        }
+        try? Item.update(
+            itemWithId: id,
+            in: itemBackgroundContext,
+            set: \.text,
+            to: newText
+        )
     }
-
 
     func update(itemWithId id: Item.ID, isSet: Bool) -> Item? {
-        let context = itemBackgroundContext
-        let request = ItemEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
-        request.fetchLimit = 1
-        do {
-            let items = try context.fetch(request)
-            guard let entity = items.first else {
-                return nil
-            }
-            entity.isSet = isSet
-            try context.save()
-            return Item(entity)
-        } catch {
-            print(error)
-            return nil
-        }
-    }
-}
-
-extension Item {
-    init?(_ entity: ItemEntity) {
-        guard let id = entity.id, let text = entity.text else {
-            return nil
-        }
-        self.id = id
-        self.text = text
-        self.isSet = entity.isSet
+        try? Item.update(
+            itemWithId: id,
+            in: itemBackgroundContext,
+            set: \.isSet,
+            to: isSet
+        )
     }
 }

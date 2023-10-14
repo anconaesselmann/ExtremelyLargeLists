@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		972BBA2A2AD9F504005B3565 /* Item+CoreDataStored.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972BBA292AD9F504005B3565 /* Item+CoreDataStored.swift */; };
 		9749FB5A2AD613A000F4CFDD /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9749FB592AD613A000F4CFDD /* RootView.swift */; };
 		9749FB5C2AD613D200F4CFDD /* SplitViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9749FB5B2AD613D200F4CFDD /* SplitViewManager.swift */; };
+		974DED262ADA0C00003E92F7 /* CoreDataStored in Frameworks */ = {isa = PBXBuildFile; productRef = 974DED252ADA0C00003E92F7 /* CoreDataStored */; };
+		974DED292ADA2EA4003E92F7 /* CoreDataStored in Frameworks */ = {isa = PBXBuildFile; productRef = 974DED282ADA2EA4003E92F7 /* CoreDataStored */; };
 		97BF0BD32AD7166D0050F720 /* ItemEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF0BD22AD7166D0050F720 /* ItemEditView.swift */; };
 		97BF0BD52AD7167F0050F720 /* ItemEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF0BD42AD7167F0050F720 /* ItemEditViewModel.swift */; };
 		97BF0BF32AD73D6A0050F720 /* TextFieldContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BF0BF22AD73D6A0050F720 /* TextFieldContainer.swift */; };
@@ -38,6 +41,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		972BBA292AD9F504005B3565 /* Item+CoreDataStored.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataStored.swift"; sourceTree = "<group>"; };
 		9749FB592AD613A000F4CFDD /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		9749FB5B2AD613D200F4CFDD /* SplitViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewManager.swift; sourceTree = "<group>"; };
 		97BF0BD22AD7166D0050F720 /* ItemEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemEditView.swift; sourceTree = "<group>"; };
@@ -74,6 +78,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				97F737A72AD5EB1300884010 /* DebugSwiftUI in Frameworks */,
+				974DED262ADA0C00003E92F7 /* CoreDataStored in Frameworks */,
+				974DED292ADA2EA4003E92F7 /* CoreDataStored in Frameworks */,
 				97F737822AD4E11700884010 /* LoremSwiftum in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -141,6 +147,7 @@
 			children = (
 				97F737892AD5C4FE00884010 /* PersistentStore.swift */,
 				97F737862AD5BA0B00884010 /* DataController.swift */,
+				972BBA292AD9F504005B3565 /* Item+CoreDataStored.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -230,6 +237,8 @@
 			packageProductDependencies = (
 				97F737812AD4E11700884010 /* LoremSwiftum */,
 				97F737A62AD5EB1300884010 /* DebugSwiftUI */,
+				974DED252ADA0C00003E92F7 /* CoreDataStored */,
+				974DED282ADA2EA4003E92F7 /* CoreDataStored */,
 			);
 			productName = ExtremelyLargeLists;
 			productReference = 97F7376E2AD4E0EA00884010 /* ExtremelyLargeLists.app */;
@@ -262,6 +271,7 @@
 			packageReferences = (
 				97F737802AD4E11700884010 /* XCRemoteSwiftPackageReference "LoremSwiftum" */,
 				97F737A52AD5EB1300884010 /* XCRemoteSwiftPackageReference "DebugSwiftUI" */,
+				974DED272ADA2EA4003E92F7 /* XCRemoteSwiftPackageReference "CoreDataStored" */,
 			);
 			productRefGroup = 97F7376F2AD4E0EA00884010 /* Products */;
 			projectDirPath = "";
@@ -309,6 +319,7 @@
 				97F737972AD5D3AF00884010 /* AppState.swift in Sources */,
 				97F737AF2AD60B4B00884010 /* Button+Extensions.swift in Sources */,
 				97F7378E2AD5D2EE00884010 /* Constants.swift in Sources */,
+				972BBA2A2AD9F504005B3565 /* Item+CoreDataStored.swift in Sources */,
 				97F7379F2AD5D9A500884010 /* ItemList.swift in Sources */,
 				97F737722AD4E0EA00884010 /* ExtremelyLargeListsApp.swift in Sources */,
 				97F737922AD5D31900884010 /* LoadingView.swift in Sources */,
@@ -533,6 +544,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		974DED272ADA2EA4003E92F7 /* XCRemoteSwiftPackageReference "CoreDataStored" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/anconaesselmann/CoreDataStored";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		97F737802AD4E11700884010 /* XCRemoteSwiftPackageReference "LoremSwiftum" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/lukaskubanek/LoremSwiftum.git";
@@ -552,6 +571,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		974DED252ADA0C00003E92F7 /* CoreDataStored */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CoreDataStored;
+		};
+		974DED282ADA2EA4003E92F7 /* CoreDataStored */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 974DED272ADA2EA4003E92F7 /* XCRemoteSwiftPackageReference "CoreDataStored" */;
+			productName = CoreDataStored;
+		};
 		97F737812AD4E11700884010 /* LoremSwiftum */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 97F737802AD4E11700884010 /* XCRemoteSwiftPackageReference "LoremSwiftum" */;

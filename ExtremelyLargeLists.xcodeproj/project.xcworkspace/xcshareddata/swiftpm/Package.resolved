@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "coredatastored",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/anconaesselmann/CoreDataStored",
+      "state" : {
+        "branch" : "main",
+        "revision" : "880fbab6900b9097b583c8df62f4856b189512ae"
+      }
+    },
+    {
       "identity" : "debugswiftui",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/anconaesselmann/DebugSwiftUI",
